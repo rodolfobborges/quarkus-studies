@@ -17,6 +17,6 @@ class LuckyNumbersGenTest {
     @Test
     void shouldReturnSixSortedRandomIntegersTillSixty() {
 
-        assertEquals(6, gen.sixSortedRandomIntegersTillSixty().size());
+        assertEquals(6, gen.sixSortedRandomIntegersUpToSixty().size());
     }
 }

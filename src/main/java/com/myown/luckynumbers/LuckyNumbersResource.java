@@ -17,6 +17,6 @@ public class LuckyNumbersResource {
     @Path("/6upto60")
     @Produces(MediaType.TEXT_PLAIN)
     public String sixUpToSixty() {
-        return luckyNumbersGen.sixSortedRandomIntegersTillSixty().toString();
+        return luckyNumbersGen.sixSortedRandomIntegersUpToSixty().toString();
     }
 }

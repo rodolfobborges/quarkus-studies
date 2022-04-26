@@ -6,7 +6,7 @@ import java.util.*;
 @ApplicationScoped
 public class LuckyNumbersGen {
 
-    public List<Integer> sixSortedRandomIntegersTillSixty(){
+    public List<Integer> sixSortedRandomIntegersUpToSixty(){
 
         Set<Integer> theSix = new HashSet<>();
         var count = 0;
