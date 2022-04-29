@@ -16,4 +16,5 @@ class LuckyNumbersResourceTest {
             .then().statusCode(200)
                 .body(notNullValue());
     }
+
 }
