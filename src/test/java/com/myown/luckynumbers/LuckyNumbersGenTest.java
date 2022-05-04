@@ -26,7 +26,7 @@ class LuckyNumbersGenTest {
     @Test
     void shouldReturnACollectionWithMoreThanOneSequenceOfSixSortedRandomIntegersTillSixty() {
 
-        HashMap<Integer, List> sequences = gen.moreThanOneSixSortedRandomIntegersUpToSixty(2);
+        HashMap<Integer, List<Integer>> sequences = gen.moreThanOneSixSortedRandomIntegersUpToSixty(2);
         assertEquals(2, sequences.size());
         assertEquals(6, sequences.get(0).size());
         assertEquals(6, sequences.get(1).size());

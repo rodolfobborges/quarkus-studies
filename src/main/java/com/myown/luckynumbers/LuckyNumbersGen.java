@@ -1,30 +1,31 @@
 package com.myown.luckynumbers;
 
 import javax.enterprise.context.ApplicationScoped;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class LuckyNumbersGen {
 
     public List<Integer> sixSortedRandomIntegersUpToSixty(){
 
-        Set<Integer> theSix = new HashSet<>();
-        var count = 0;
-        while (count < 6)
-            if (theSix.add(new Random().nextInt(60)))
-                count++;
-
-        List<Integer> sortedSix = new ArrayList<>(theSix);
-        Collections.sort(sortedSix);
-        return sortedSix;
+        return
+            new Random().ints(18,1, 61)
+                    .distinct()
+                    .limit(6)
+                    .sorted()
+                    .boxed()
+                    .collect(Collectors.toList());
     }
 
-    public HashMap<Integer, List> moreThanOneSixSortedRandomIntegersUpToSixty(final Integer howMany){
+    public HashMap<Integer, List<Integer>> moreThanOneSixSortedRandomIntegersUpToSixty(final Integer howMany){
         final Integer HOW_MANY_MAX = 60;
         if (howMany > HOW_MANY_MAX)
             throw new IllegalArgumentException(String.format("Max of how many 6 random integers sequences is %1s", HOW_MANY_MAX));
 
-        HashMap<Integer, List> sequences = new HashMap<>();
+        HashMap<Integer, List<Integer>> sequences = new HashMap<>();
 
         for (int i = 0; i < howMany; i++)
             sequences.put(i, sixSortedRandomIntegersUpToSixty());
