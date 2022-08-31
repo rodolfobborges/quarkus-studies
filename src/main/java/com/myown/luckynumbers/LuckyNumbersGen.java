@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class LuckyNumbersGen {
 
-    public static final Integer HOW_MANY_MAX = 60;
+    public static final Integer MAX_SEQUENCES = 60;
 
     public List<Integer> sixSortedRandomIntegersUpToSixty(){
 
@@ -24,8 +24,9 @@ public class LuckyNumbersGen {
 
     public HashMap<Integer, List<Integer>> moreThanOneSixSortedRandomIntegersUpToSixty(final Integer howMany){
 
-        if (howMany > HOW_MANY_MAX)
-            throw new IllegalArgumentException(String.format("Max of how many 6 random integers sequences is %1s", HOW_MANY_MAX));
+        if (howMany > MAX_SEQUENCES)
+            throw new IllegalArgumentException(String.format(
+                    "Max of how many 6 random integers sequences is %1s", MAX_SEQUENCES));
 
         HashMap<Integer, List<Integer>> sequences = new HashMap<>();
 
