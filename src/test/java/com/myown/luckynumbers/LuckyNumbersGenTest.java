@@ -3,9 +3,7 @@ package com.myown.luckynumbers;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,7 +19,10 @@ class LuckyNumbersGenTest {
     @Test
     void shouldReturnSixSortedRandomIntegersTillSixty() {
 
-        assertEquals(6, gen.sixSortedRandomIntegersUpToSixty().size());
+        List<Integer> sequence = gen.sixSortedRandomIntegersUpToSixty();
+        assertEquals(6, sequence.size());
+        assertEquals(Collections.min(sequence), sequence.get(0));
+        assertEquals(Collections.max(sequence), sequence.get(5));
     }
 
     @Test
@@ -38,7 +39,7 @@ class LuckyNumbersGenTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> gen.moreThanOneSixSortedRandomIntegersUpToSixty(100));
 
-        assertEquals("Max of how many 6 random integers sequences is " + LuckyNumbersGen.HOW_MANY_MAX,
+        assertEquals("Max of how many 6 random integers sequences is " + LuckyNumbersGen.MAX_SEQUENCES,
                 exception.getMessage());
     }
 
@@ -53,6 +54,8 @@ class LuckyNumbersGenTest {
         assertTrue(sequence.contains(15));
         assertTrue(sequence.contains(29));
         assertTrue(sequence.contains(41));
+        assertEquals(Collections.min(sequence), sequence.get(0));
+        assertEquals(Collections.max(sequence), sequence.get(5));
 
         // this line is just for debugging purpose
         // gen.fillUpUntilSixSortedRandomIntegersUpToSixty(givenNumbers).forEach(System.out::println);
