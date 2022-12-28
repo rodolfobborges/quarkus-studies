@@ -35,9 +35,7 @@ public class LuckyNumbersGen {
     }
 
     public List<Integer> fillUpUntilSixSortedRandomIntegersUpToSixty(final String numbers) {
-        if (!numbers.contains(",")) {
-            throw new IllegalArgumentException("Numbers should be separated in a CSV format");
-        }
+
         List<Integer> convertedNumbers;
         try {
             convertedNumbers =
@@ -55,7 +53,7 @@ public class LuckyNumbersGen {
             throw new IllegalArgumentException("The max numbers provided must be 6");
         }
 
-        if (numbers.stream().max(Integer::compareTo).get() > 60) {
+        if (numbers.stream().max(Integer::compare).get() > 60) {
             throw new IllegalArgumentException("Numbers can't be higher than 60");
         }
 

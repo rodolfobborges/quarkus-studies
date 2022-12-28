@@ -88,11 +88,4 @@ class LuckyNumbersGenTest {
         assertEquals("Input must to be just numbers", exception.getMessage());
     }
 
-    @Test
-    void shouldThrowExceptionWhenPassedTextIsNotInCSVFormat() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> gen.fillUpUntilSixSortedRandomIntegersUpToSixty("3 17 30"));
-
-        assertEquals("Numbers should be separated in a CSV format", exception.getMessage());
-    }
 }
