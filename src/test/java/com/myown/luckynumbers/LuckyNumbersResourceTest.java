@@ -20,7 +20,7 @@ class LuckyNumbersResourceTest {
     @Test
     void sixUpToSixtyThreeTimes() {
         given()
-            .when().get("/gen/6upto60/3/times")
+            .when().get("/gen/6upto60/10")
             .then().statusCode(200)
                 .body(notNullValue());
     }

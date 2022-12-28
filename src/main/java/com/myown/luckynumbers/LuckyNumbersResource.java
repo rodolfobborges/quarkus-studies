@@ -21,16 +21,16 @@ public final class LuckyNumbersResource {
     }
 
     @GET
-    @Path("/6upto60/{howMany}/times")
+    @Path("/6upto60/{howManySequences}")
     @Produces(MediaType.TEXT_PLAIN)
-    public String sixUpToSixty(@PathParam("howMany") final Integer howMany) {
-        return luckyNumbersGen.moreThanOneSixSortedRandomIntegersUpToSixty(howMany).toString();
+    public String sixUpToSixty(@PathParam("howManySequences") final Integer howManySequences) {
+        return luckyNumbersGen.moreThanOneSixSortedRandomIntegersUpToSixty(howManySequences).toString();
     }
 
     @GET
     @Path("/6upto60/with/{numbers}")
     @Produces(MediaType.TEXT_PLAIN)
-    public String sixUpToSixty(@PathParam("numbers") final String numbers) {
+    public String sixUpToSixtyWithGiven(@PathParam("numbers") final String numbers) {
         return luckyNumbersGen.fillUpUntilSixSortedRandomIntegersUpToSixty(numbers).toString();
     }
 }
