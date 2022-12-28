@@ -17,4 +17,20 @@ class LuckyNumbersResourceTest {
                 .body(notNullValue());
     }
 
+    @Test
+    void sixUpToSixtyThreeTimes() {
+        given()
+            .when().get("/gen/6upto60/3/times")
+            .then().statusCode(200)
+                .body(notNullValue());
+    }
+
+    @Test
+    void sixUpToSixtyWithGivenNumbers() {
+        given()
+                .when().get("/gen/6upto60/with/2,6")
+                .then().statusCode(200)
+                .body(notNullValue());
+    }
+
 }
