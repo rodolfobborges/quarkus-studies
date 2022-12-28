@@ -28,14 +28,14 @@ class LuckyNumbersGenTest {
     @Test
     void shouldReturnACollectionWithTwoSequencesOfSixSortedRandomIntegersTillSixty() {
 
-        HashMap<Integer, List<Integer>> sequences = gen.moreThanOneSixSortedRandomIntegersUpToSixty(2);
+        Map<Integer, List<Integer>> sequences = gen.moreThanOneSixSortedRandomIntegersUpToSixty(2);
         assertEquals(2, sequences.size());
         assertEquals(6, sequences.get(0).size());
         assertEquals(6, sequences.get(1).size());
     }
 
     @Test
-    void shouldThrowExceptionWhenRequestedSequencesPassMaximumAllowed(){
+    void shouldThrowExceptionWhenRequestedSequencesPassMaximumAllowed() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> gen.moreThanOneSixSortedRandomIntegersUpToSixty(100));
 
@@ -56,8 +56,43 @@ class LuckyNumbersGenTest {
         assertTrue(sequence.contains(41));
         assertEquals(Collections.min(sequence), sequence.get(0));
         assertEquals(Collections.max(sequence), sequence.get(5));
+    }
 
-        // this line is just for debugging purpose
-        // gen.fillUpUntilSixSortedRandomIntegersUpToSixty(givenNumbers).forEach(System.out::println);
+    @Test
+    void shouldThrowExceptionWhenSomePassedNumberWasHigherThanSixty() {
+        List<Integer> givenNumbers = Arrays.asList(2,61);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> gen.fillUpUntilSixSortedRandomIntegersUpToSixty(givenNumbers));
+
+        assertEquals("Numbers can't be higher than 60", exception.getMessage());
+    }
+
+    @Test
+    void shouldReturnSixSortedRandomIntegersIncludingGivenNumbersAsText() {
+        List<Integer> sequence = gen.fillUpUntilSixSortedRandomIntegersUpToSixty("2,29,15,5,41");
+        assertEquals(6, sequence.size());
+        assertTrue(sequence.contains(2));
+        assertTrue(sequence.contains(5));
+        assertTrue(sequence.contains(15));
+        assertTrue(sequence.contains(29));
+        assertTrue(sequence.contains(41));
+        assertEquals(Collections.min(sequence), sequence.get(0));
+        assertEquals(Collections.max(sequence), sequence.get(5));
+    }
+
+    @Test
+    void shouldThrowExceptionWhenPassedTextContainsNonNumber() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> gen.fillUpUntilSixSortedRandomIntegersUpToSixty("2,X"));
+
+        assertEquals("Input must to be just numbers", exception.getMessage());
+    }
+
+    @Test
+    void shouldThrowExceptionWhenPassedTextIsNotInCSVFormat() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> gen.fillUpUntilSixSortedRandomIntegersUpToSixty("3 17 30"));
+
+        assertEquals("Numbers should be separated in a CSV format", exception.getMessage());
     }
 }
