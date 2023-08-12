@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class LuckyNumbersGen {
 
-    public static final Integer MAX_SEQUENCES = 60;
+    private final Random random = new Random();
 
     public List<Integer> sixSortedRandomIntegersUpToSixty(){
 
         return
-            new Random().ints(18,1, 61)
+                random.ints(18,1, 61)
                     .distinct()
                     .limit(6)
                     .sorted()
@@ -22,9 +22,9 @@ public class LuckyNumbersGen {
 
     public Map<Integer, List<Integer>> moreThanOneSixSortedRandomIntegersUpToSixty(final Integer howMany){
 
-        if (howMany > MAX_SEQUENCES)
+        if (howMany > 10)
             throw new IllegalArgumentException(String.format(
-                    "Max of how many 6 random integers sequences is %1s", MAX_SEQUENCES));
+                    "Max of how many 6 random integers sequences is %1s", 10));
 
         Map<Integer, List<Integer>> sequences = new HashMap<>();
 
@@ -49,16 +49,19 @@ public class LuckyNumbersGen {
 
     public  List<Integer> fillUpUntilSixSortedRandomIntegersUpToSixty(final List<Integer> numbers) {
 
-        if (numbers.size() > 6) {
+        if (numbers.size() > 6)
             throw new IllegalArgumentException("The max numbers provided must be 6");
-        }
 
-        if (numbers.stream().max(Integer::compare).get() > 60) {
-            throw new IllegalArgumentException("Numbers can't be higher than 60");
-        }
+        boolean hasNegativeOrZero = numbers.stream().anyMatch(num -> num <= 0);
+        if (hasNegativeOrZero)
+            throw new IllegalArgumentException("Numbers must be greater than zero");
+
+        int maxNumber = numbers.stream().max(Integer::compare).orElse(Integer.MAX_VALUE);
+        if (maxNumber > 60)
+            throw new IllegalArgumentException("Numbers can't be greater than 60");
 
         List<Integer> sequence =
-                new Random().ints(18, 1, 61)
+                random.ints(18, 1, 61)
                         .boxed()
                         .collect(Collectors.toList());
 

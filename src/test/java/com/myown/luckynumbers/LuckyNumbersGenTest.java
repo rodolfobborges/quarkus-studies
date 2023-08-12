@@ -39,8 +39,7 @@ class LuckyNumbersGenTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> gen.moreThanOneSixSortedRandomIntegersUpToSixty(100));
 
-        assertEquals("Max of how many 6 random integers sequences is " + LuckyNumbersGen.MAX_SEQUENCES,
-                exception.getMessage());
+        assertEquals("Max of how many 6 random integers sequences is 10", exception.getMessage());
     }
 
     @Test
@@ -59,12 +58,12 @@ class LuckyNumbersGenTest {
     }
 
     @Test
-    void shouldThrowExceptionWhenSomePassedNumberWasHigherThanSixty() {
+    void shouldThrowExceptionWhenNumberHigherThanSixty() {
         List<Integer> givenNumbers = Arrays.asList(2,61);
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> gen.fillUpUntilSixSortedRandomIntegersUpToSixty(givenNumbers));
 
-        assertEquals("Numbers can't be higher than 60", exception.getMessage());
+        assertEquals("Numbers can't be greater than 60", exception.getMessage());
     }
 
     @Test
@@ -81,11 +80,19 @@ class LuckyNumbersGenTest {
     }
 
     @Test
-    void shouldThrowExceptionWhenPassedTextContainsNonNumber() {
+    void shouldThrowExceptionWhenNonNumberProvided() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> gen.fillUpUntilSixSortedRandomIntegersUpToSixty("2,X"));
 
         assertEquals("Input must to be just numbers", exception.getMessage());
+    }
+
+    @Test
+    void shouldThrowExceptionWhenNegativeNumberProvided() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> gen.fillUpUntilSixSortedRandomIntegersUpToSixty("-3,14"));
+
+        assertEquals("Numbers must be greater than zero", exception.getMessage());
     }
 
 }
