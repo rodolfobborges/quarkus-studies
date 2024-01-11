@@ -1,0 +1,11 @@
+### get 1 sequence of 6 numbers from 1 to 60 with given numbers
+GET http://localhost:8080/gen/6upto60/with/23,60
+
+
+### get 3 sequences of 6 numbers from 1 to 60
+GET http://localhost:8080/gen/6upto60/3
+
+
+### get 1 sequence of 6 numbers from 1 to 60
+GET http://localhost:8080/gen/6upto60
+
